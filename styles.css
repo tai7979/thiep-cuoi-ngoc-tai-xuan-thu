@@ -336,6 +336,22 @@ figcaption,
   color: var(--muted);
 }
 
+.directions-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.directions-link:hover {
+  color: var(--ink);
+}
+
 .event-divider {
   display: block;
   width: 35px;
