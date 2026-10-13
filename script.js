@@ -1,16 +1,23 @@
 const photos = document.querySelectorAll(".wedding-photo");
 
-photos.forEach((photo) => {
-  photo.addEventListener("error", () => {
-    const frame = photo.closest(".photo-frame");
-    if (!frame || frame.querySelector(".image-fallback")) return;
+function showImageFallback(photo) {
+  const frame = photo.closest(".photo-frame");
+  if (!frame || frame.querySelector(".image-fallback")) return;
 
-    const fallback = document.createElement("div");
-    fallback.className = "image-fallback";
-    fallback.setAttribute("role", "status");
-    fallback.innerHTML = `<strong>Ảnh cưới sẽ được cập nhật</strong><span>${photo.dataset.fallback}</span>`;
-    frame.append(fallback);
-  }, { once: true });
+  const fallback = document.createElement("div");
+  const title = document.createElement("strong");
+  const message = document.createElement("span");
+  fallback.className = "image-fallback";
+  fallback.setAttribute("role", "status");
+  title.textContent = "Ảnh cưới sẽ được cập nhật";
+  message.textContent = photo.dataset.fallback;
+  fallback.append(title, message);
+  frame.append(fallback);
+}
+
+photos.forEach((photo) => {
+  photo.addEventListener("error", () => showImageFallback(photo), { once: true });
+  if (photo.complete && photo.naturalWidth === 0) showImageFallback(photo);
 });
 
 const lightbox = document.querySelector(".lightbox");
