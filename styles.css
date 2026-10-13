@@ -285,6 +285,15 @@ figcaption,
   object-fit: contain;
 }
 
+.album-video-frame {
+  grid-column: 1 / -1;
+  width: min(100%, 360px);
+  height: auto;
+  min-height: 0;
+  aspect-ratio: 9 / 16;
+  justify-self: center;
+}
+
 .album-video {
   display: block;
   width: 100%;
